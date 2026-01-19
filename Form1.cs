@@ -25,6 +25,8 @@ namespace KaanerMusic
             InitializeComponent();
         }
 
+        #region Buttons and titlebar events
+
         private void btn_close_Click(object sender, EventArgs e)
         {
             Application.Exit();
@@ -51,5 +53,7 @@ namespace KaanerMusic
             else
                 WindowState = FormWindowState.Normal;
         }
+
+        #endregion
     }
 }
