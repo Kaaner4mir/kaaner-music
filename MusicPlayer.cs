@@ -129,7 +129,46 @@ namespace KaanerMusic
             }
         }
 
-        // Buradaki Position ve Duration metodları arayüzde (UI) kullanılmadığı için temizlendi.
-        // İhtiyaç duyulursa tekrar eklenebilir.
+        /// <summary>
+        /// Şu anki çalma süresini saniye cinsinden döndürür.
+        /// </summary>
+        public double GetCurrentPosition()
+        {
+            return _audioFile != null ? _audioFile.CurrentTime.TotalSeconds : 0;
+        }
+
+        /// <summary>
+        /// Şarkının toplam süresini saniye cinsinden döndürür.
+        /// </summary>
+        public double GetDuration()
+        {
+            return _audioFile != null ? _audioFile.TotalTime.TotalSeconds : 0;
+        }
+
+        /// <summary>
+        /// Şarkı süresini "dk:sn" formatında metin olarak döndürür (Örn: 03:45).
+        /// </summary>
+        public string GetDurationString()
+        {
+            return _audioFile != null ? _audioFile.TotalTime.ToString(@"mm\:ss") : "00:00";
+        }
+
+        /// <summary>
+        /// Şarkıyı belirli bir saniyeye sarar.
+        /// </summary>
+        /// <param name="position">Saniye cinsinden hedef pozisyon.</param>
+        public void SetPosition(double position)
+        {
+            if (_audioFile != null)
+            {
+                // Pozisyonun toplam süreyi aşmamasını garantiye al
+                if (position > _audioFile.TotalTime.TotalSeconds)
+                {
+                    position = _audioFile.TotalTime.TotalSeconds;
+                }
+                
+                _audioFile.CurrentTime = TimeSpan.FromSeconds(position);
+            }
+        }
     }
 }

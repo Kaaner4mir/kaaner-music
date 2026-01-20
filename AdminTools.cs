@@ -82,11 +82,35 @@ namespace KaanerMusic
                     }
                 }
 
+                // Resim Dosyası Kontrolü (Aynı klasörde)
+                // 1. Şarkı ile aynı isimde .jpg
+                // 2. Şarkı ile aynı isimde .png
+                // 3. 'cover.jpg' (Genel kapak)
+                string imageUrl = "";
+                string directory = Path.GetDirectoryName(filePath);
+                string baseName = Path.GetFileNameWithoutExtension(filePath);
+                
+                string jpgPath = Path.Combine(directory, baseName + ".jpg");
+                string pngPath = Path.Combine(directory, baseName + ".png");
+                string coverPath = Path.Combine(directory, "cover.jpg");
+
+                if (File.Exists(jpgPath))
+                {
+                    imageUrl = _githubRawBaseUrl + Uri.EscapeDataString(baseName + ".jpg");
+                }
+                else if (File.Exists(pngPath))
+                {
+                    imageUrl = _githubRawBaseUrl + Uri.EscapeDataString(baseName + ".png");
+                }
+                // cover.jpg tüm şarkılara aynı resmi atar, istenirse açılabilir
+                // else if (File.Exists(coverPath)) { ... }
+
                 var song = new Song
                 {
                     Title = title,
                     Artist = artist,
-                    FileUrl = fileUrl
+                    FileUrl = fileUrl,
+                    ImageUrl = imageUrl // Resim URL'sini ata
                 };
 
                 playlist.Add(song);

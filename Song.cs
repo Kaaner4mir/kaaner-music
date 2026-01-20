@@ -22,6 +22,10 @@ namespace KaanerMusic
         [JsonProperty("Link")]
         public string FileUrl { get; set; }
 
+        // Albüm kapağı resmi linki
+        [JsonProperty("ImageUrl")]
+        public string ImageUrl { get; set; }
+
         /// <summary>
         /// ListBox gibi kontrollerde nesne gösterilirken bu metot çağrılır.
         /// </summary>

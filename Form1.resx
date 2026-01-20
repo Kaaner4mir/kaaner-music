@@ -953,10 +953,13 @@
         AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAYOPfVeKCiV8bPt8AAAAASUVORK5CYII=
 </value>
   </data>
+  <metadata name="timer_progress.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
   <data name="btn_next_song.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAB9AAAAfQCAYAAACaOMR5AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
-        vwAADr8BOAVTJAAAffxJREFUeF7s3a9vnVcW7+GbKIpkXQUUmAQVGQUOM82lhVNoGnZvqWloqWloof+A
+        vQAADr0BR/uQrQAAffxJREFUeF7s3a9vnVcW7+GbKIpkXQUUmAQVGQUOM82lhVNoGnZvqWloqWloof+A
         0LLAgGpIkElIgaWAysp8rjI36W3X9IcTnx/vOed54Exqn/O+e6+l9fWW9v/4HwAAAAAAAAAAAAAAAAAA
         AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
         AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
@@ -1500,7 +1503,7 @@
   <data name="btn_previous_song.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAB9AAAAfQCAYAAACaOMR5AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
-        vwAADr8BOAVTJAAAgQNJREFUeF7s3a1v3NfW9+GnllUpwCAgxCioyDDsUGPDU5gbpjA01DS01DTw/AGm
+        vQAADr0BR/uQrQAAgQNJREFUeF7s3a1v3NfW9+GnllUpwCAgxCioyDDsUGPDU5gbpjA01DS01DTw/AGm
         ZoUGOSVFISYBkVwpqpzPo5y6992u07SJ7RnPy3XBvNgz+7f3WlrfPdL8v/8HAAAAAAAAAAAAAAAAAAAA
         AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
         AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
@@ -2057,7 +2060,7 @@
   <data name="btn_resume.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAB9AAAAfQCAYAAACaOMR5AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
-        vgAADr4B6kKxwAAA3SFJREFUeF7s/Xu4fXdZ3/0+4SggUgFPCKhg5KDhUEEoRARrNVZUrK1FRBta9YmW
+        vAAADrwBlbxySQAA3SFJREFUeF7s/Xu4fXdZ3/0+4SggUgFPCKhg5KDhUEEoRARrNVZUrK1FRBta9YmW
         atRaQ9XuWKumte7mqa1EPKWiwnZjjdZNg9SC5fExCCgFRKAcBEHlfAyEQPLe16BLL7lXTr9krTXHnPP1
         uq77T/GXOcb4Hu7PGt/xf/wfAAAAsMOqO1R3qT6zun/1N6q/WX1F9djqH1X/pDqv+pfVj1VPrv5T9Yzq
         mdVzqudVv1NdVv1e9aLqxdVLqj+s/qh6VfWa6nXVG6o3Vn9WvaV6W/XO6t3V+6oPdO3eX723elf19oP/

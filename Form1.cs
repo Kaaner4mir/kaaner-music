@@ -156,6 +156,17 @@ namespace KaanerMusic
             if (song != null && !string.IsNullOrEmpty(song.FileUrl))
             {
                 _musicPlayer.Play(song.FileUrl);
+                timer_progress.Start(); // Zamanlayıcıyı başlat
+                
+                // Albüm kapağını yükle (Asenkron)
+                if (!string.IsNullOrEmpty(song.ImageUrl))
+                {
+                    pic_album_art.LoadAsync(song.ImageUrl);
+                }
+                else
+                {
+                   pic_album_art.Image = null; // Resim yoksa temizle
+                }
                 
                 // Butonların görünürlüğünü ayarlar
                 btn_play.Visible = false;   // Play butonunu gizle
@@ -206,9 +217,7 @@ namespace KaanerMusic
             if (count > 0)
             {
                 MessageBox.Show($"Başarılı! {count} şarkı bulundu ve 'songs.json' oluşturuldu.\n\nLÜTFEN DİKKAT:\nBu değişikliklerin çalışması için 'Songs' klasörünü (içindeki songs.json ile birlikte) GitHub'a PUSH etmelisiniz.");
-                // Burada hemen yüklemiyoruz çünkü GitHub'a gitmesi lazım, 
-                // ama yerel test için manuel JSON okuma eklenebilir. 
-                // Şimdilik kullanıcı GitHub'a yükleyince görecek.
+                // Burada hemen yüklemiyoruz çünkü GitHub'a yüklenmesi lazım.
             }
         }
 
@@ -220,7 +229,9 @@ namespace KaanerMusic
             // Eğer seçili bir şarkı varsa devam ettir veya oynat
             if (_currentSong != null)
             {
-                _musicPlayer.Play(_currentSong.FileUrl); 
+                _musicPlayer.Play(_currentSong.FileUrl);
+                timer_progress.Start(); // Zamanlayıcıyı başlat
+
                 btn_play.Visible = false;
                 btn_resume.Visible = true;
             }
@@ -241,10 +252,61 @@ namespace KaanerMusic
         {
             // Müziği duraklatır
             _musicPlayer.Pause();
+            timer_progress.Stop(); // Zamanlayıcıyı durdur
+            
             // Butonları değiştir
             btn_resume.Visible = false;
             btn_play.Visible = true;
         }
+
+        #region İlerleme Çubuğu İşlemleri (Progress Bar Logic)
+
+        // Kullanıcı çubuğu kaydırıyor mu?
+        private bool _isDraggingProgress = false;
+
+        private void timer_progress_Tick(object sender, EventArgs e)
+        {
+            // Eğer kullanıcı o an kaydırma yapmıyorsa, çubuğu şarkı süresine göre ilerlet
+            if (!_isDraggingProgress && _musicPlayer != null)
+            {
+                double current = _musicPlayer.GetCurrentPosition();
+                double total = _musicPlayer.GetDuration();
+
+                if (total > 0)
+                {
+                    // TrackBar maksimum değeri varsayılan 10 ise veya değiştirildiyse
+                    // Hassasiyet için TrackBar Max değerini şarkı saniyesine eşitleyebiliriz
+                    track_progress.Maximum = (int)total;
+                    
+                    if (current <= total)
+                        track_progress.Value = (int)current;
+                }
+            }
+        }
+
+        private void track_progress_Scroll(object sender, EventArgs e)
+        {
+            // Kullanıcı kaydırırken anlık olarak süre etiketi güncellenebilir (varsa)
+        }
+
+        private void track_progress_MouseDown(object sender, MouseEventArgs e)
+        {
+            // Kullanıcı tuttuğunda otomatik ilerlemeyi durdur ki çakışma olmasın
+            _isDraggingProgress = true;
+        }
+
+        private void track_progress_MouseUp(object sender, MouseEventArgs e)
+        {
+            // Kullanıcı bıraktığında şarkıyı o konuma sar
+            _isDraggingProgress = false;
+            
+            if (_musicPlayer != null)
+            {
+                _musicPlayer.SetPosition(track_progress.Value);
+            }
+        }
+
+        #endregion
 
         /// <summary>
         /// Sonraki şarkı butonuna tıklanınca çalışır.
