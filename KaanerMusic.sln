@@ -5,7 +5,7 @@ VisualStudioVersion = 17.14.36908.2
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KaanerMusic", "KaanerMusic.csproj", "{79FA2A7A-7FED-48DF-8FA7-B24796970424}"
 EndProject
-Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Kaaner Music", "..\Kaaner Music\Kaaner Music.vdproj", "{34B2CF57-FD7E-37DD-DC9A-50BDDCC089A3}"
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Setup", "..\Setup\Setup.vdproj", "{4D1AC582-8087-5490-FCC2-03CEC5D22547}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,8 +17,8 @@ Global
 		{79FA2A7A-7FED-48DF-8FA7-B24796970424}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{79FA2A7A-7FED-48DF-8FA7-B24796970424}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{79FA2A7A-7FED-48DF-8FA7-B24796970424}.Release|Any CPU.Build.0 = Release|Any CPU
-		{34B2CF57-FD7E-37DD-DC9A-50BDDCC089A3}.Debug|Any CPU.ActiveCfg = Debug
-		{34B2CF57-FD7E-37DD-DC9A-50BDDCC089A3}.Release|Any CPU.ActiveCfg = Release
+		{4D1AC582-8087-5490-FCC2-03CEC5D22547}.Debug|Any CPU.ActiveCfg = Debug
+		{4D1AC582-8087-5490-FCC2-03CEC5D22547}.Release|Any CPU.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
