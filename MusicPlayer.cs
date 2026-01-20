@@ -3,70 +3,105 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using WMPLib;
+using NAudio.Wave;
 
 namespace KaanerMusic
 {
     public class MusicPlayer
     {
-        private WindowsMediaPlayer _player;
+        private IWavePlayer _outputDevice;
+        private MediaFoundationReader _audioFile;
+        private string _currentUrl;
 
         public MusicPlayer()
         {
-            _player = new WindowsMediaPlayer();
-            // AutoStart true means it plays as soon as URL is set. 
-            // We can control this effectively by setting URL then playing.
-            _player.settings.autoStart = true; 
+            // Constructor
         }
 
         public void Play(string url)
         {
-            // If the same URL is already loaded, just play
-            if (_player.URL == url && _player.playState == WMPPlayState.wmppsPaused)
+            try 
             {
-                _player.controls.play();
-                return;
-            }
+                // If resuming same song
+                if (_currentUrl == url && _outputDevice != null && _outputDevice.PlaybackState == PlaybackState.Paused)
+                {
+                    _outputDevice.Play();
+                    return;
+                }
 
-            _player.URL = url;
-            // WMP auto-plays when URL is set if autoStart is true
+                // If playing new song or stopped
+                Stop();
+
+                _currentUrl = url;
+                _audioFile = new MediaFoundationReader(url);
+                _outputDevice = new WaveOutEvent();
+                _outputDevice.Init(_audioFile);
+                _outputDevice.Play();
+            }
+            catch (Exception ex)
+            {
+                System.Windows.Forms.MessageBox.Show($"Playback error: {ex.Message}");
+            }
         }
 
         public void Pause()
         {
-            _player.controls.pause();
+            if (_outputDevice != null)
+            {
+                _outputDevice.Pause();
+            }
         }
 
         public void Stop()
         {
-            _player.controls.stop();
+            if (_outputDevice != null)
+            {
+                _outputDevice.Stop();
+                _outputDevice.Dispose();
+                _outputDevice = null;
+            }
+            if (_audioFile != null)
+            {
+                _audioFile.Dispose();
+                _audioFile = null;
+            }
+            _currentUrl = null;
         }
 
         public void SetVolume(int volume)
         {
-            // Volume is 0-100
-            _player.settings.volume = volume;
+            // WMP used 0-100, NAudio WaveOutEvent.Volume is 0.0-1.0
+            // Note: WaveOutEvent.Volume is obsolete in some versions but still properties on AudioFileReader exist.
+            // With MediaFoundationReader, we don't have direct Volume property easily accessible 
+            // without wrapping in a sample provider, but `WaveOutEvent.Volume` works on the device level for some APIs.
+            
+            if (_outputDevice is WaveOutEvent waveOut)
+            {
+                waveOut.Volume = volume / 100f;
+            }
         }
 
         public double GetCurrentPosition()
         {
-            return _player.controls.currentPosition;
+            return _audioFile != null ? _audioFile.CurrentTime.TotalSeconds : 0;
         }
 
         public double GetDuration()
         {
-            // Note: Duration might not be available immediately after setting URL
-            return _player.currentMedia != null ? _player.currentMedia.duration : 0;
+            return _audioFile != null ? _audioFile.TotalTime.TotalSeconds : 0;
         }
 
         public string GetDurationString()
         {
-            return _player.currentMedia != null ? _player.currentMedia.durationString : "00:00";
+            return _audioFile != null ? _audioFile.TotalTime.ToString(@"mm\:ss") : "00:00";
         }
 
         public void SetPosition(double position)
         {
-            _player.controls.currentPosition = position;
+            if (_audioFile != null)
+            {
+                _audioFile.CurrentTime = TimeSpan.FromSeconds(position);
+            }
         }
     }
 }

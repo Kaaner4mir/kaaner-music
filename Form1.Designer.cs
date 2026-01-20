@@ -211,6 +211,7 @@
             this.track_volume.TabIndex = 3;
             this.track_volume.TickStyle = System.Windows.Forms.TickStyle.None;
             this.track_volume.Value = 50;
+            this.track_volume.Scroll += new System.EventHandler(this.track_volume_Scroll);
             // 
             // btn_play
             // 
