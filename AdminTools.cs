@@ -4,58 +4,73 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using FireSharp.Interfaces;
-using FireSharp.Response;
+using Newtonsoft.Json;
 
 namespace KaanerMusic
 {
+    /// <summary>
+    /// Yönetici Araçları sınıfı.
+    /// Yerel dosyaları tarayıp 'songs.json' çalma listesi dosyasını oluşturur.
+    /// </summary>
     public class AdminTools
     {
-        private IFirebaseClient _client;
+        // GitHub Raw dosya URL kalıbı
         private string _githubRawBaseUrl;
+        
+        // Yerel şarkıların bulunduğu klasör yolu
         private string _localSongsPath;
 
-        public AdminTools(IFirebaseClient client)
+        /// <summary>
+        /// Yapıcı metot (Constructor).
+        /// </summary>
+        public AdminTools()
         {
-            _client = client;
-            // Update this with your actual repo details if they differ
-            // Format: https://raw.githubusercontent.com/{User}/{Repo}/{Branch}/{Folder}/
+            // GitHub üzerindeki "Songs" klasörünün ham (Raw) veri adresi.
+            // Format: https://raw.githubusercontent.com/{Kullanıcı}/{Repo}/{Branch}/{Klasör}/
             _githubRawBaseUrl = "https://raw.githubusercontent.com/Kaaner4mir/kaaner-music/main/Songs/";
             
-            // Assumes 'Songs' folder is in the project root (where the .exe runs, or one level up during dev)
-            // In dev: bin\Debug\Songs might not exist, usually it's in project root.
-            // Let's look for it in the project directory relative to execution
+            // Şarkıların bulunduğu yerel klasör yolunu belirler.
+            // Çalışma dizininden 2 üst klasöre (Proje kök dizini) ve oradan 'Songs' klasörüne bakar.
             string projectPath = Path.GetFullPath(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"..\..\"));
             _localSongsPath = Path.Combine(projectPath, "Songs");
         }
 
-        public async Task<int> SyncSongsToFirebase()
+        /// <summary>
+        /// Yerel 'Songs' klasöründeki MP3 dosyalarını tarar ve 'songs.json' dosyasını oluşturur.
+        /// </summary>
+        /// <returns>Oluşturulan listedeki şarkı sayısı.</returns>
+        public Task<int> GeneratePlaylistJson()
         {
+            // Klasör kontrolü
             if (!Directory.Exists(_localSongsPath))
             {
-                MessageBox.Show($"'Songs' folder not found at: {_localSongsPath}\nPlease create it and add MP3 files.");
-                return 0;
+                MessageBox.Show($"'Songs' klasörü bulunamadı: {_localSongsPath}\nLütfen klasörü oluşturun ve içine MP3 dosyalarını atın.");
+                return Task.FromResult(0);
             }
 
+            // MP3 dosyalarını bul
             var files = Directory.GetFiles(_localSongsPath, "*.mp3");
             if (files.Length == 0)
             {
-                MessageBox.Show("No .mp3 files found in Songs folder.");
-                return 0;
+                MessageBox.Show("'Songs' klasöründe hiç .mp3 dosyası bulunamadı.");
+                return Task.FromResult(0);
             }
 
-            var songsToUpload = new Dictionary<string, Song>();
+            // Oluşturulacak şarkı listesi
+            var playlist = new List<Song>();
             
             foreach (var filePath in files)
             {
                 string fileName = Path.GetFileName(filePath);
-                string urlEncodedName = Uri.EscapeDataString(fileName); // Handle spaces etc.
+                
+                // URL uyumlu hale getir (boşlukları %20 yap vs.)
+                string urlEncodedName = Uri.EscapeDataString(fileName); 
                 string fileUrl = _githubRawBaseUrl + urlEncodedName;
 
-                // Simple metadata parsing (filename based for now to avoid extra Playback dep just for tags)
-                // Format assumption: "Artist - Title.mp3" or just "Title.mp3"
+                // Basit metadata ayrıştırma (Dosya adına göre)
+                // Format: "Artist - Title.mp3" veya "Title.mp3"
                 string title = Path.GetFileNameWithoutExtension(fileName);
-                string artist = "Unknown Artist";
+                string artist = "Bilinmeyen Sanatçı";
 
                 if (title.Contains("-"))
                 {
@@ -74,23 +89,24 @@ namespace KaanerMusic
                     FileUrl = fileUrl
                 };
 
-                // Use a safe key for Firebase (no special chars like ., $, #, [, ], /)
-                string safeKey = Guid.NewGuid().ToString(); 
-                songsToUpload.Add(safeKey, song);
+                playlist.Add(song);
             }
 
-            // Upload to Firebase (Set implies overwrite 'Songs' node, or Update to append. 
-            // For fresh sync, Set is cleaner but dangerous if we want to keep old data. 
-            // Let's use Set for now as this is a master sync.)
             try
             {
-                SetResponse response = await _client.SetAsync("Songs", songsToUpload);
-                return songsToUpload.Count;
+                // Listeyi JSON formatına çevir
+                string jsonOutput = JsonConvert.SerializeObject(playlist, Formatting.Indented);
+                
+                // songs.json dosyasına yaz
+                string jsonPath = Path.Combine(_localSongsPath, "songs.json");
+                File.WriteAllText(jsonPath, jsonOutput);
+                
+                return Task.FromResult(playlist.Count);
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Firebase Upload Error: {ex.Message}");
-                return 0;
+                MessageBox.Show($"JSON Oluşturma Hatası: {ex.Message}");
+                return Task.FromResult(0);
             }
         }
     }

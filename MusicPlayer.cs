@@ -1,49 +1,85 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using NAudio.Wave;
+
+// Gereksiz using ifadeleri (System.Collections.Generic, Linq, Text, Threading.Tasks) kaldırıldı.
 
 namespace KaanerMusic
 {
+    /// <summary>
+    /// Müzik çalma işlemlerini yöneten sınıf.
+    /// NAudio kütüphanesini kullanarak ses dosyalarını oynatır.
+    /// </summary>
     public class MusicPlayer
     {
+        // Ses çıkış cihazı (Hoparlör vs.)
         private IWavePlayer _outputDevice;
+        
+        // Ses dosyasını okuyan okuyucu (URL veya yerel dosya destekler)
         private MediaFoundationReader _audioFile;
+        
+        // Şu an çalınan şarkının URL'si (tekrar çalmayı önlemek veya devam etmek için)
         private string _currentUrl;
 
+        /// <summary>
+        /// Yapıcı metot (Constructor).
+        /// </summary>
         public MusicPlayer()
         {
-            // Constructor
+            // Başlangıç ayarları gerekirse buraya eklenebilir.
         }
 
+        // Şarkı bittiğinde tetiklenecek olay
+        public event EventHandler PlaybackStopped;
+
+        /// <summary>
+        /// Belirtilen URL'deki müzik dosyasını çalar.
+        /// </summary>
+        /// <param name="url">Çalınacak ses dosyasının adresi (Web URL veya Dosya Yolu).</param>
         public void Play(string url)
         {
             try 
             {
-                // If resuming same song
+                // Eğer aynı şarkı duraklatılmışsa ve tekrar play denmişse, kaldığı yerden devam et.
                 if (_currentUrl == url && _outputDevice != null && _outputDevice.PlaybackState == PlaybackState.Paused)
                 {
                     _outputDevice.Play();
                     return;
                 }
 
-                // If playing new song or stopped
+                // Yeni bir şarkıysa veya durmuşsa, önce mevcut olanı temizle
                 Stop();
 
                 _currentUrl = url;
+                
+                // Müzik dosyasını internetten veya diskten yükle
                 _audioFile = new MediaFoundationReader(url);
-                _outputDevice = new WaveOutEvent();
+                
+                // Ses çıkış cihazını (Varsayılan ses kartı) oluştur
+                var waveOut = new WaveOutEvent();
+                waveOut.PlaybackStopped += OnPlaybackStopped;
+                _outputDevice = waveOut;
+                
+                // Cihazı müzik dosyası ile başlat
                 _outputDevice.Init(_audioFile);
+                
+                // Oynatmayı başlat
                 _outputDevice.Play();
             }
             catch (Exception ex)
             {
-                System.Windows.Forms.MessageBox.Show($"Playback error: {ex.Message}");
+                System.Windows.Forms.MessageBox.Show($"Oynatma hatası: {ex.Message}");
             }
         }
 
+        private void OnPlaybackStopped(object sender, StoppedEventArgs e)
+        {
+            // Olayı dışarıya fırlat (Form1 yakalasın)
+            PlaybackStopped?.Invoke(this, EventArgs.Empty);
+        }
+
+        /// <summary>
+        /// Müziği duraklatır.
+        /// </summary>
         public void Pause()
         {
             if (_outputDevice != null)
@@ -52,14 +88,25 @@ namespace KaanerMusic
             }
         }
 
+        /// <summary>
+        /// Müziği tamamen durdurur ve kaynakları serbest bırakır.
+        /// </summary>
         public void Stop()
         {
+            // Ses cihazını durdur ve temizle
             if (_outputDevice != null)
             {
+                // Önce olayı dinlemeyi bırak ki sonsuz döngüye girmesin
+                if (_outputDevice is WaveOutEvent waveOut)
+                {
+                    waveOut.PlaybackStopped -= OnPlaybackStopped;
+                }
+
                 _outputDevice.Stop();
-                _outputDevice.Dispose();
+                _outputDevice.Dispose(); // Kaynakları işletim sistemine iade et
                 _outputDevice = null;
             }
+            // Ses dosyasını kapat ve temizle
             if (_audioFile != null)
             {
                 _audioFile.Dispose();
@@ -68,40 +115,21 @@ namespace KaanerMusic
             _currentUrl = null;
         }
 
+        /// <summary>
+        /// Ses seviyesini ayarlar.
+        /// </summary>
+        /// <param name="volume">0 ile 100 arasında bir değer.</param>
         public void SetVolume(int volume)
         {
-            // WMP used 0-100, NAudio WaveOutEvent.Volume is 0.0-1.0
-            // Note: WaveOutEvent.Volume is obsolete in some versions but still properties on AudioFileReader exist.
-            // With MediaFoundationReader, we don't have direct Volume property easily accessible 
-            // without wrapping in a sample provider, but `WaveOutEvent.Volume` works on the device level for some APIs.
-            
+            // NAudio WaveOutEvent.Volume 0.0f ile 1.0f arasında değer alır.
+            // Bu yüzden gelen 0-100 değerini 100'e bölüyoruz.
             if (_outputDevice is WaveOutEvent waveOut)
             {
                 waveOut.Volume = volume / 100f;
             }
         }
 
-        public double GetCurrentPosition()
-        {
-            return _audioFile != null ? _audioFile.CurrentTime.TotalSeconds : 0;
-        }
-
-        public double GetDuration()
-        {
-            return _audioFile != null ? _audioFile.TotalTime.TotalSeconds : 0;
-        }
-
-        public string GetDurationString()
-        {
-            return _audioFile != null ? _audioFile.TotalTime.ToString(@"mm\:ss") : "00:00";
-        }
-
-        public void SetPosition(double position)
-        {
-            if (_audioFile != null)
-            {
-                _audioFile.CurrentTime = TimeSpan.FromSeconds(position);
-            }
-        }
+        // Buradaki Position ve Duration metodları arayüzde (UI) kullanılmadığı için temizlendi.
+        // İhtiyaç duyulursa tekrar eklenebilir.
     }
 }

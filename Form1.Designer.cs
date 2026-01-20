@@ -33,6 +33,7 @@
             this.btn_restore = new System.Windows.Forms.Button();
             this.btn_minimize = new System.Windows.Forms.Button();
             this.btn_close = new System.Windows.Forms.Button();
+            this.btn_admin_sync = new System.Windows.Forms.Button();
             this.lst_songs = new System.Windows.Forms.ListBox();
             this.pnl_controls = new System.Windows.Forms.Panel();
             this.btn_next_song = new System.Windows.Forms.Button();
@@ -75,21 +76,6 @@
             this.btn_restore.UseVisualStyleBackColor = true;
             this.btn_restore.Click += new System.EventHandler(this.btn_restore_Click);
             // 
-            // btn_admin_sync
-            // 
-            this.btn_admin_sync.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btn_admin_sync.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btn_admin_sync.FlatAppearance.BorderSize = 0;
-            this.btn_admin_sync.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_admin_sync.ForeColor = System.Drawing.Color.White;
-            this.btn_admin_sync.Location = new System.Drawing.Point(1000, 0); 
-            this.btn_admin_sync.Name = "btn_admin_sync";
-            this.btn_admin_sync.Size = new System.Drawing.Size(100, 30);
-            this.btn_admin_sync.TabIndex = 4;
-            this.btn_admin_sync.Text = "Sync Songs";
-            this.btn_admin_sync.UseVisualStyleBackColor = true;
-            this.btn_admin_sync.Click += new System.EventHandler(this.btn_admin_sync_Click);
-            // 
             // btn_minimize
             // 
             this.btn_minimize.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -120,6 +106,21 @@
             this.btn_close.TabIndex = 1;
             this.btn_close.UseVisualStyleBackColor = true;
             this.btn_close.Click += new System.EventHandler(this.btn_close_Click);
+            // 
+            // btn_admin_sync
+            // 
+            this.btn_admin_sync.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btn_admin_sync.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btn_admin_sync.FlatAppearance.BorderSize = 0;
+            this.btn_admin_sync.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_admin_sync.ForeColor = System.Drawing.Color.White;
+            this.btn_admin_sync.Location = new System.Drawing.Point(1000, 0);
+            this.btn_admin_sync.Name = "btn_admin_sync";
+            this.btn_admin_sync.Size = new System.Drawing.Size(100, 30);
+            this.btn_admin_sync.TabIndex = 4;
+            this.btn_admin_sync.Text = "Sync Songs";
+            this.btn_admin_sync.UseVisualStyleBackColor = true;
+            this.btn_admin_sync.Click += new System.EventHandler(this.btn_admin_sync_Click);
             // 
             // lst_songs
             // 
@@ -167,6 +168,7 @@
             this.btn_next_song.Size = new System.Drawing.Size(40, 40);
             this.btn_next_song.TabIndex = 7;
             this.btn_next_song.UseVisualStyleBackColor = true;
+            this.btn_next_song.Click += new System.EventHandler(this.btn_next_song_Click);
             // 
             // btn_previous_song
             // 
@@ -185,6 +187,7 @@
             this.btn_previous_song.Size = new System.Drawing.Size(40, 40);
             this.btn_previous_song.TabIndex = 6;
             this.btn_previous_song.UseVisualStyleBackColor = true;
+            this.btn_previous_song.Click += new System.EventHandler(this.btn_previous_song_Click);
             // 
             // btn_resume
             // 
