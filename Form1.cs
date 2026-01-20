@@ -153,6 +153,18 @@ namespace KaanerMusic
                 WindowState = FormWindowState.Normal;
         }
 
+        private async void btn_admin_sync_Click(object sender, EventArgs e)
+        {
+            var adminTools = new AdminTools(client);
+            int count = await adminTools.SyncSongsToFirebase();
+            if (count > 0)
+            {
+                MessageBox.Show($"Successfully synced {count} songs to DB!");
+                // Reload list
+                LoadSongs();
+            }
+        }
+
         private void btn_play_Click(object sender, EventArgs e)
         {
             // Resume or Play current

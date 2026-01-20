@@ -52,6 +52,7 @@
             this.pnl_titlebar.Controls.Add(this.btn_restore);
             this.pnl_titlebar.Controls.Add(this.btn_minimize);
             this.pnl_titlebar.Controls.Add(this.btn_close);
+            this.pnl_titlebar.Controls.Add(this.btn_admin_sync);
             this.pnl_titlebar.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnl_titlebar.Location = new System.Drawing.Point(0, 0);
             this.pnl_titlebar.Name = "pnl_titlebar";
@@ -73,6 +74,21 @@
             this.btn_restore.TabIndex = 3;
             this.btn_restore.UseVisualStyleBackColor = true;
             this.btn_restore.Click += new System.EventHandler(this.btn_restore_Click);
+            // 
+            // btn_admin_sync
+            // 
+            this.btn_admin_sync.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btn_admin_sync.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btn_admin_sync.FlatAppearance.BorderSize = 0;
+            this.btn_admin_sync.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_admin_sync.ForeColor = System.Drawing.Color.White;
+            this.btn_admin_sync.Location = new System.Drawing.Point(1000, 0); 
+            this.btn_admin_sync.Name = "btn_admin_sync";
+            this.btn_admin_sync.Size = new System.Drawing.Size(100, 30);
+            this.btn_admin_sync.TabIndex = 4;
+            this.btn_admin_sync.Text = "Sync Songs";
+            this.btn_admin_sync.UseVisualStyleBackColor = true;
+            this.btn_admin_sync.Click += new System.EventHandler(this.btn_admin_sync_Click);
             // 
             // btn_minimize
             // 
@@ -259,6 +275,7 @@
         private System.Windows.Forms.Button btn_close;
         private System.Windows.Forms.Button btn_minimize;
         private System.Windows.Forms.Button btn_restore;
+        private System.Windows.Forms.Button btn_admin_sync;
         private System.Windows.Forms.ListBox lst_songs;
         private System.Windows.Forms.Panel pnl_controls;
         private System.Windows.Forms.Button btn_play;
