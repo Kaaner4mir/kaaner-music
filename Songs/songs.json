@@ -12,10 +12,28 @@
     "ImageUrl": "https://raw.githubusercontent.com/Kaaner4mir/kaaner-music/main/Songs/Acil%20Servis%20-%20Yusuf%20Yusuf.jpg"
   },
   {
+    "Name": "Koca Yaşlı Şişko Dünya",
+    "Artist": "Adamlar",
+    "Link": "https://raw.githubusercontent.com/Kaaner4mir/kaaner-music/main/Songs/Adamlar%20-%20%20Koca%20Ya%C5%9Fl%C4%B1%20%C5%9Ei%C5%9Fko%20D%C3%BCnya.mp3",
+    "ImageUrl": "https://raw.githubusercontent.com/Kaaner4mir/kaaner-music/main/Songs/Adamlar%20-%20%20Koca%20Ya%C5%9Fl%C4%B1%20%C5%9Ei%C5%9Fko%20D%C3%BCnya.jpg"
+  },
+  {
+    "Name": "Acının İlacı",
+    "Artist": "Adamlar",
+    "Link": "https://raw.githubusercontent.com/Kaaner4mir/kaaner-music/main/Songs/Adamlar%20-%20Ac%C4%B1n%C4%B1n%20%C4%B0lac%C4%B1.mp3",
+    "ImageUrl": "https://raw.githubusercontent.com/Kaaner4mir/kaaner-music/main/Songs/Adamlar%20-%20Ac%C4%B1n%C4%B1n%20%C4%B0lac%C4%B1.jpg"
+  },
+  {
     "Name": "Mavi Ekran",
     "Artist": "Adamlar",
     "Link": "https://raw.githubusercontent.com/Kaaner4mir/kaaner-music/main/Songs/Adamlar%20-%20Mavi%20Ekran.mp3",
     "ImageUrl": "https://raw.githubusercontent.com/Kaaner4mir/kaaner-music/main/Songs/Adamlar%20-%20Mavi%20Ekran.jpg"
+  },
+  {
+    "Name": "Zombi",
+    "Artist": "Adamlar",
+    "Link": "https://raw.githubusercontent.com/Kaaner4mir/kaaner-music/main/Songs/Adamlar%20-%20Zombi.mp3",
+    "ImageUrl": "https://raw.githubusercontent.com/Kaaner4mir/kaaner-music/main/Songs/Adamlar%20-%20Zombi.jpg"
   },
   {
     "Name": "Geber (Tuğkan Cover)",
@@ -27,13 +45,25 @@
     "Name": "Nilüfer",
     "Artist": "Alkan Dalgakıran",
     "Link": "https://raw.githubusercontent.com/Kaaner4mir/kaaner-music/main/Songs/Alkan%20Dalgak%C4%B1ran%20-%20Nil%C3%BCfer.mp3",
-    "ImageUrl": ""
+    "ImageUrl": "https://raw.githubusercontent.com/Kaaner4mir/kaaner-music/main/Songs/Alkan%20Dalgak%C4%B1ran%20-%20Nil%C3%BCfer.jpg"
   },
   {
     "Name": "Do I Wanna Know",
     "Artist": "Arctic Monkeys",
     "Link": "https://raw.githubusercontent.com/Kaaner4mir/kaaner-music/main/Songs/Arctic%20Monkeys%20-%20Do%20I%20Wanna%20Know.mp3",
     "ImageUrl": "https://raw.githubusercontent.com/Kaaner4mir/kaaner-music/main/Songs/Arctic%20Monkeys%20-%20Do%20I%20Wanna%20Know.jpg"
+  },
+  {
+    "Name": "Arsız Gönül",
+    "Artist": "Athena",
+    "Link": "https://raw.githubusercontent.com/Kaaner4mir/kaaner-music/main/Songs/Athena%20-%20Ars%C4%B1z%20G%C3%B6n%C3%BCl.mp3",
+    "ImageUrl": "https://raw.githubusercontent.com/Kaaner4mir/kaaner-music/main/Songs/Athena%20-%20Ars%C4%B1z%20G%C3%B6n%C3%BCl.jpg"
+  },
+  {
+    "Name": "Kafama Göre",
+    "Artist": "Athena",
+    "Link": "https://raw.githubusercontent.com/Kaaner4mir/kaaner-music/main/Songs/Athena%20-%20Kafama%20G%C3%B6re.mp3",
+    "ImageUrl": "https://raw.githubusercontent.com/Kaaner4mir/kaaner-music/main/Songs/Athena%20-%20Kafama%20G%C3%B6re.jpg"
   },
   {
     "Name": "Yalan",
@@ -60,6 +90,18 @@
     "ImageUrl": "https://raw.githubusercontent.com/Kaaner4mir/kaaner-music/main/Songs/Dekadans%20-%20Kendin%20Ol.jpg"
   },
   {
+    "Name": "Saldır",
+    "Artist": "Dekadans",
+    "Link": "https://raw.githubusercontent.com/Kaaner4mir/kaaner-music/main/Songs/Dekadans%20-%20Sald%C4%B1r.mp3",
+    "ImageUrl": "https://raw.githubusercontent.com/Kaaner4mir/kaaner-music/main/Songs/Dekadans%20-%20Sald%C4%B1r.jpg"
+  },
+  {
+    "Name": "Sanırım Artık",
+    "Artist": "Dekadans",
+    "Link": "https://raw.githubusercontent.com/Kaaner4mir/kaaner-music/main/Songs/Dekadans%20-%20San%C4%B1r%C4%B1m%20Art%C4%B1k.mp3",
+    "ImageUrl": "https://raw.githubusercontent.com/Kaaner4mir/kaaner-music/main/Songs/Dekadans%20-%20San%C4%B1r%C4%B1m%20Art%C4%B1k.jpg"
+  },
+  {
     "Name": "Mavi Duvar",
     "Artist": "Haramiler",
     "Link": "https://raw.githubusercontent.com/Kaaner4mir/kaaner-music/main/Songs/Haramiler%20-%20Mavi%20Duvar.mp3",
@@ -84,10 +126,22 @@
     "ImageUrl": "https://raw.githubusercontent.com/Kaaner4mir/kaaner-music/main/Songs/Louis%20Stotesbery%20-%20Akbaba.jpg"
   },
   {
+    "Name": "Beggin’",
+    "Artist": "Måneskin",
+    "Link": "https://raw.githubusercontent.com/Kaaner4mir/kaaner-music/main/Songs/M%C3%A5neskin%20-%20Beggin%E2%80%99.mp3",
+    "ImageUrl": "https://raw.githubusercontent.com/Kaaner4mir/kaaner-music/main/Songs/M%C3%A5neskin%20-%20Beggin%E2%80%99.jpg"
+  },
+  {
     "Name": "THE LONELIEST",
     "Artist": "Måneskin",
     "Link": "https://raw.githubusercontent.com/Kaaner4mir/kaaner-music/main/Songs/M%C3%A5neskin%20-%20THE%20LONELIEST.mp3",
     "ImageUrl": "https://raw.githubusercontent.com/Kaaner4mir/kaaner-music/main/Songs/M%C3%A5neskin%20-%20THE%20LONELIEST.jpg"
+  },
+  {
+    "Name": "ZITTI E BUONI",
+    "Artist": "Måneskin",
+    "Link": "https://raw.githubusercontent.com/Kaaner4mir/kaaner-music/main/Songs/M%C3%A5neskin%20-%20ZITTI%20E%20BUONI.mp3",
+    "ImageUrl": "https://raw.githubusercontent.com/Kaaner4mir/kaaner-music/main/Songs/M%C3%A5neskin%20-%20ZITTI%20E%20BUONI.jpg"
   },
   {
     "Name": "Her Gece",
@@ -96,10 +150,28 @@
     "ImageUrl": "https://raw.githubusercontent.com/Kaaner4mir/kaaner-music/main/Songs/Perdenin%20Ard%C4%B1ndakiler%20-%20Her%20Gece.jpg"
   },
   {
+    "Name": "Biliyorsun",
+    "Artist": "Redd",
+    "Link": "https://raw.githubusercontent.com/Kaaner4mir/kaaner-music/main/Songs/Redd%20-%20Biliyorsun.mp3",
+    "ImageUrl": "https://raw.githubusercontent.com/Kaaner4mir/kaaner-music/main/Songs/Redd%20-%20Biliyorsun.jpg"
+  },
+  {
+    "Name": "Kanıyorduk",
+    "Artist": "Redd",
+    "Link": "https://raw.githubusercontent.com/Kaaner4mir/kaaner-music/main/Songs/Redd%20-%20Kan%C4%B1yorduk.mp3",
+    "ImageUrl": "https://raw.githubusercontent.com/Kaaner4mir/kaaner-music/main/Songs/Redd%20-%20Kan%C4%B1yorduk.jpg"
+  },
+  {
     "Name": "Kozmos",
     "Artist": "Redd",
     "Link": "https://raw.githubusercontent.com/Kaaner4mir/kaaner-music/main/Songs/Redd%20-%20Kozmos.mp3",
     "ImageUrl": "https://raw.githubusercontent.com/Kaaner4mir/kaaner-music/main/Songs/Redd%20-%20Kozmos.jpg"
+  },
+  {
+    "Name": "Prensesin Uykusuyum",
+    "Artist": "Redd",
+    "Link": "https://raw.githubusercontent.com/Kaaner4mir/kaaner-music/main/Songs/Redd%20-%20Prensesin%20Uykusuyum.mp3",
+    "ImageUrl": "https://raw.githubusercontent.com/Kaaner4mir/kaaner-music/main/Songs/Redd%20-%20Prensesin%20Uykusuyum.jpg"
   },
   {
     "Name": "Sevmeden Geçer Zaman (feat. Şebnem Ferah)",
@@ -118,5 +190,17 @@
     "Artist": "Skapova",
     "Link": "https://raw.githubusercontent.com/Kaaner4mir/kaaner-music/main/Songs/Skapova%20-%20%C3%96lmek%20%C4%B0stedim.mp3",
     "ImageUrl": "https://raw.githubusercontent.com/Kaaner4mir/kaaner-music/main/Songs/Skapova%20-%20%C3%96lmek%20%C4%B0stedim.jpg"
+  },
+  {
+    "Name": "She's a cat",
+    "Artist": "Stotesbery",
+    "Link": "https://raw.githubusercontent.com/Kaaner4mir/kaaner-music/main/Songs/Stotesbery%20-%20She%27s%20a%20cat.mp3",
+    "ImageUrl": "https://raw.githubusercontent.com/Kaaner4mir/kaaner-music/main/Songs/Stotesbery%20-%20She%27s%20a%20cat.jpg"
+  },
+  {
+    "Name": "Linkin Park",
+    "Artist": "The Emptiness Machine",
+    "Link": "https://raw.githubusercontent.com/Kaaner4mir/kaaner-music/main/Songs/The%20Emptiness%20Machine%20-%20Linkin%20Park.mp3",
+    "ImageUrl": "https://raw.githubusercontent.com/Kaaner4mir/kaaner-music/main/Songs/The%20Emptiness%20Machine%20-%20Linkin%20Park.jpg"
   }
 ]

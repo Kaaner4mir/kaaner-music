@@ -125,12 +125,44 @@ namespace KaanerMusic
                 string jsonPath = Path.Combine(_localSongsPath, "songs.json");
                 File.WriteAllText(jsonPath, jsonOutput);
                 
+                // Kaynak dizine de yazmayı dene
+                SaveJsonToSourceDirectory(jsonOutput);
+                
                 return Task.FromResult(playlist.Count);
             }
             catch (Exception ex)
             {
                 MessageBox.Show($"JSON Oluşturma Hatası: {ex.Message}");
                 return Task.FromResult(0);
+            }
+        }
+
+        private void SaveJsonToSourceDirectory(string jsonOutput)
+        {
+            try
+            {
+                // Çalışma dizini: .../bin/Debug/
+                // Proje dizini genellikle: .../ (2 veya 3 seviye yukarı)
+                string baseDir = AppDomain.CurrentDomain.BaseDirectory;
+                DirectoryInfo dirInfo = new DirectoryInfo(baseDir);
+
+                // bin ve Debug klasörlerinden yukarı çıkmayı dene
+                if (dirInfo.Parent != null && dirInfo.Parent.Parent != null)
+                {
+                    string sourceDir = dirInfo.Parent.Parent.FullName;
+                    string sourceSongsDir = Path.Combine(sourceDir, "Songs");
+
+                    // Eğer kaynakta Songs klasörü varsa oraya da yaz
+                    if (Directory.Exists(sourceSongsDir))
+                    {
+                        string sourceJsonPath = Path.Combine(sourceSongsDir, "songs.json");
+                        File.WriteAllText(sourceJsonPath, jsonOutput);
+                    }
+                }
+            }
+            catch
+            {
+                // Geliştirme ortamı hatası, kullanıcıya yansıtma
             }
         }
     }

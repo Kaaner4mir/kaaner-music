@@ -293,6 +293,15 @@ namespace KaanerMusic
         {
             // Kullanıcı tuttuğunda otomatik ilerlemeyi durdur ki çakışma olmasın
             _isDraggingProgress = true;
+            
+            // Tıklanan noktaya ilerleme çubuğunu taşı (Click to Seek)
+            double dblValue = ((double)e.X / (double)track_progress.Width) * (track_progress.Maximum - track_progress.Minimum);
+            int newValue = (int)dblValue;
+
+            if (newValue >= track_progress.Minimum && newValue <= track_progress.Maximum)
+            {
+                track_progress.Value = newValue;
+            }
         }
 
         private void track_progress_MouseUp(object sender, MouseEventArgs e)
