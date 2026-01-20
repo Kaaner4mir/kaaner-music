@@ -2,101 +2,121 @@
   {
     "Name": "Bebek",
     "Artist": "Acil Servis",
-    "Link": "https://raw.githubusercontent.com/Kaaner4mir/kaaner-music/main/Songs/Acil%20Servis%20-%20Bebek.mp3"
+    "Link": "https://raw.githubusercontent.com/Kaaner4mir/kaaner-music/main/Songs/Acil%20Servis%20-%20Bebek.mp3",
+    "ImageUrl": "https://raw.githubusercontent.com/Kaaner4mir/kaaner-music/main/Songs/Acil%20Servis%20-%20Bebek.jpg"
   },
   {
     "Name": "Yusuf Yusuf",
     "Artist": "Acil Servis",
-    "Link": "https://raw.githubusercontent.com/Kaaner4mir/kaaner-music/main/Songs/Acil%20Servis%20-%20Yusuf%20Yusuf.mp3"
+    "Link": "https://raw.githubusercontent.com/Kaaner4mir/kaaner-music/main/Songs/Acil%20Servis%20-%20Yusuf%20Yusuf.mp3",
+    "ImageUrl": "https://raw.githubusercontent.com/Kaaner4mir/kaaner-music/main/Songs/Acil%20Servis%20-%20Yusuf%20Yusuf.jpg"
   },
   {
     "Name": "Mavi Ekran",
     "Artist": "Adamlar",
-    "Link": "https://raw.githubusercontent.com/Kaaner4mir/kaaner-music/main/Songs/Adamlar%20-%20Mavi%20Ekran.mp3"
+    "Link": "https://raw.githubusercontent.com/Kaaner4mir/kaaner-music/main/Songs/Adamlar%20-%20Mavi%20Ekran.mp3",
+    "ImageUrl": "https://raw.githubusercontent.com/Kaaner4mir/kaaner-music/main/Songs/Adamlar%20-%20Mavi%20Ekran.jpg"
   },
   {
     "Name": "Geber (Tuğkan Cover)",
     "Artist": "Alkan Dalgakıran",
-    "Link": "https://raw.githubusercontent.com/Kaaner4mir/kaaner-music/main/Songs/Alkan%20Dalgak%C4%B1ran%20-%20Geber%20%28Tu%C4%9Fkan%20Cover%29.mp3"
+    "Link": "https://raw.githubusercontent.com/Kaaner4mir/kaaner-music/main/Songs/Alkan%20Dalgak%C4%B1ran%20-%20Geber%20%28Tu%C4%9Fkan%20Cover%29.mp3",
+    "ImageUrl": "https://raw.githubusercontent.com/Kaaner4mir/kaaner-music/main/Songs/Alkan%20Dalgak%C4%B1ran%20-%20Geber%20%28Tu%C4%9Fkan%20Cover%29.jpg"
   },
   {
     "Name": "Nilüfer",
     "Artist": "Alkan Dalgakıran",
-    "Link": "https://raw.githubusercontent.com/Kaaner4mir/kaaner-music/main/Songs/Alkan%20Dalgak%C4%B1ran%20-%20Nil%C3%BCfer.mp3"
+    "Link": "https://raw.githubusercontent.com/Kaaner4mir/kaaner-music/main/Songs/Alkan%20Dalgak%C4%B1ran%20-%20Nil%C3%BCfer.mp3",
+    "ImageUrl": ""
   },
   {
     "Name": "Do I Wanna Know",
     "Artist": "Arctic Monkeys",
-    "Link": "https://raw.githubusercontent.com/Kaaner4mir/kaaner-music/main/Songs/Arctic%20Monkeys%20-%20Do%20I%20Wanna%20Know.mp3"
+    "Link": "https://raw.githubusercontent.com/Kaaner4mir/kaaner-music/main/Songs/Arctic%20Monkeys%20-%20Do%20I%20Wanna%20Know.mp3",
+    "ImageUrl": "https://raw.githubusercontent.com/Kaaner4mir/kaaner-music/main/Songs/Arctic%20Monkeys%20-%20Do%20I%20Wanna%20Know.jpg"
   },
   {
     "Name": "Yalan",
     "Artist": "Athena",
-    "Link": "https://raw.githubusercontent.com/Kaaner4mir/kaaner-music/main/Songs/Athena%20-%20Yalan.mp3"
+    "Link": "https://raw.githubusercontent.com/Kaaner4mir/kaaner-music/main/Songs/Athena%20-%20Yalan.mp3",
+    "ImageUrl": "https://raw.githubusercontent.com/Kaaner4mir/kaaner-music/main/Songs/Athena%20-%20Yalan.jpg"
   },
   {
     "Name": "Let It Burn",
     "Artist": "Carpetman, Black Soil",
-    "Link": "https://raw.githubusercontent.com/Kaaner4mir/kaaner-music/main/Songs/Carpetman%2C%20Black%20Soil%20-%20Let%20It%20Burn.mp3"
+    "Link": "https://raw.githubusercontent.com/Kaaner4mir/kaaner-music/main/Songs/Carpetman%2C%20Black%20Soil%20-%20Let%20It%20Burn.mp3",
+    "ImageUrl": "https://raw.githubusercontent.com/Kaaner4mir/kaaner-music/main/Songs/Carpetman%2C%20Black%20Soil%20-%20Let%20It%20Burn.jpg"
   },
   {
     "Name": "Cinnet",
     "Artist": "Dekadans",
-    "Link": "https://raw.githubusercontent.com/Kaaner4mir/kaaner-music/main/Songs/Dekadans%20-%20Cinnet.mp3"
+    "Link": "https://raw.githubusercontent.com/Kaaner4mir/kaaner-music/main/Songs/Dekadans%20-%20Cinnet.mp3",
+    "ImageUrl": "https://raw.githubusercontent.com/Kaaner4mir/kaaner-music/main/Songs/Dekadans%20-%20Cinnet.jpg"
   },
   {
     "Name": "Kendin Ol",
     "Artist": "Dekadans",
-    "Link": "https://raw.githubusercontent.com/Kaaner4mir/kaaner-music/main/Songs/Dekadans%20-%20Kendin%20Ol.mp3"
+    "Link": "https://raw.githubusercontent.com/Kaaner4mir/kaaner-music/main/Songs/Dekadans%20-%20Kendin%20Ol.mp3",
+    "ImageUrl": "https://raw.githubusercontent.com/Kaaner4mir/kaaner-music/main/Songs/Dekadans%20-%20Kendin%20Ol.jpg"
   },
   {
     "Name": "Mavi Duvar",
     "Artist": "Haramiler",
-    "Link": "https://raw.githubusercontent.com/Kaaner4mir/kaaner-music/main/Songs/Haramiler%20-%20Mavi%20Duvar.mp3"
+    "Link": "https://raw.githubusercontent.com/Kaaner4mir/kaaner-music/main/Songs/Haramiler%20-%20Mavi%20Duvar.mp3",
+    "ImageUrl": "https://raw.githubusercontent.com/Kaaner4mir/kaaner-music/main/Songs/Haramiler%20-%20Mavi%20Duvar.jpg"
   },
   {
     "Name": "Camdan Küre",
     "Artist": "Haramiler",
-    "Link": "https://raw.githubusercontent.com/Kaaner4mir/kaaner-music/main/Songs/Haramiler%20-Camdan%20K%C3%BCre.mp3"
+    "Link": "https://raw.githubusercontent.com/Kaaner4mir/kaaner-music/main/Songs/Haramiler%20-Camdan%20K%C3%BCre.mp3",
+    "ImageUrl": "https://raw.githubusercontent.com/Kaaner4mir/kaaner-music/main/Songs/Haramiler%20-Camdan%20K%C3%BCre.jpg"
   },
   {
     "Name": "Heavy Is the crown",
     "Artist": "Linkin Park",
-    "Link": "https://raw.githubusercontent.com/Kaaner4mir/kaaner-music/main/Songs/Linkin%20Park%20-%20Heavy%20Is%20the%20crown.mp3"
+    "Link": "https://raw.githubusercontent.com/Kaaner4mir/kaaner-music/main/Songs/Linkin%20Park%20-%20Heavy%20Is%20the%20crown.mp3",
+    "ImageUrl": "https://raw.githubusercontent.com/Kaaner4mir/kaaner-music/main/Songs/Linkin%20Park%20-%20Heavy%20Is%20the%20crown.jpg"
   },
   {
     "Name": "Akbaba",
     "Artist": "Louis Stotesbery",
-    "Link": "https://raw.githubusercontent.com/Kaaner4mir/kaaner-music/main/Songs/Louis%20Stotesbery%20-%20Akbaba.mp3"
+    "Link": "https://raw.githubusercontent.com/Kaaner4mir/kaaner-music/main/Songs/Louis%20Stotesbery%20-%20Akbaba.mp3",
+    "ImageUrl": "https://raw.githubusercontent.com/Kaaner4mir/kaaner-music/main/Songs/Louis%20Stotesbery%20-%20Akbaba.jpg"
   },
   {
     "Name": "THE LONELIEST",
     "Artist": "Måneskin",
-    "Link": "https://raw.githubusercontent.com/Kaaner4mir/kaaner-music/main/Songs/M%C3%A5neskin%20-%20THE%20LONELIEST.mp3"
+    "Link": "https://raw.githubusercontent.com/Kaaner4mir/kaaner-music/main/Songs/M%C3%A5neskin%20-%20THE%20LONELIEST.mp3",
+    "ImageUrl": "https://raw.githubusercontent.com/Kaaner4mir/kaaner-music/main/Songs/M%C3%A5neskin%20-%20THE%20LONELIEST.jpg"
   },
   {
     "Name": "Her Gece",
     "Artist": "Perdenin Ardındakiler",
-    "Link": "https://raw.githubusercontent.com/Kaaner4mir/kaaner-music/main/Songs/Perdenin%20Ard%C4%B1ndakiler%20-%20Her%20Gece.mp3"
+    "Link": "https://raw.githubusercontent.com/Kaaner4mir/kaaner-music/main/Songs/Perdenin%20Ard%C4%B1ndakiler%20-%20Her%20Gece.mp3",
+    "ImageUrl": "https://raw.githubusercontent.com/Kaaner4mir/kaaner-music/main/Songs/Perdenin%20Ard%C4%B1ndakiler%20-%20Her%20Gece.jpg"
   },
   {
     "Name": "Kozmos",
     "Artist": "Redd",
-    "Link": "https://raw.githubusercontent.com/Kaaner4mir/kaaner-music/main/Songs/Redd%20-%20Kozmos.mp3"
+    "Link": "https://raw.githubusercontent.com/Kaaner4mir/kaaner-music/main/Songs/Redd%20-%20Kozmos.mp3",
+    "ImageUrl": "https://raw.githubusercontent.com/Kaaner4mir/kaaner-music/main/Songs/Redd%20-%20Kozmos.jpg"
   },
   {
     "Name": "Sevmeden Geçer Zaman (feat. Şebnem Ferah)",
     "Artist": "Redd",
-    "Link": "https://raw.githubusercontent.com/Kaaner4mir/kaaner-music/main/Songs/Redd%20-%20Sevmeden%20Ge%C3%A7er%20Zaman%20%28feat.%20%C5%9Eebnem%20Ferah%29.mp3"
+    "Link": "https://raw.githubusercontent.com/Kaaner4mir/kaaner-music/main/Songs/Redd%20-%20Sevmeden%20Ge%C3%A7er%20Zaman%20%28feat.%20%C5%9Eebnem%20Ferah%29.mp3",
+    "ImageUrl": "https://raw.githubusercontent.com/Kaaner4mir/kaaner-music/main/Songs/Redd%20-%20Sevmeden%20Ge%C3%A7er%20Zaman%20%28feat.%20%C5%9Eebnem%20Ferah%29.jpg"
   },
   {
     "Name": "Careless Whisper",
     "Artist": "Seether",
-    "Link": "https://raw.githubusercontent.com/Kaaner4mir/kaaner-music/main/Songs/Seether%20-%20Careless%20Whisper.mp3"
+    "Link": "https://raw.githubusercontent.com/Kaaner4mir/kaaner-music/main/Songs/Seether%20-%20Careless%20Whisper.mp3",
+    "ImageUrl": "https://raw.githubusercontent.com/Kaaner4mir/kaaner-music/main/Songs/Seether%20-%20Careless%20Whisper.jpg"
   },
   {
     "Name": "Ölmek İstedim",
     "Artist": "Skapova",
-    "Link": "https://raw.githubusercontent.com/Kaaner4mir/kaaner-music/main/Songs/Skapova%20-%20%C3%96lmek%20%C4%B0stedim.mp3"
+    "Link": "https://raw.githubusercontent.com/Kaaner4mir/kaaner-music/main/Songs/Skapova%20-%20%C3%96lmek%20%C4%B0stedim.mp3",
+    "ImageUrl": "https://raw.githubusercontent.com/Kaaner4mir/kaaner-music/main/Songs/Skapova%20-%20%C3%96lmek%20%C4%B0stedim.jpg"
   }
 ]
