@@ -5,31 +5,26 @@ using Newtonsoft.Json;
 namespace KaanerMusic
 {
     /// <summary>
-    /// Şarkı veri modeli sınıfı.
-    /// Firebase'den gelen ve giden veriyi temsil eder.
+    /// Song data model class.
+    /// Represents data coming from and going to JSON/GitHub.
     /// </summary>
     public class Song
     {
-        // JSON özelliğinin adı "Name" olarak eşleşir.
         [JsonProperty("Name")]
         public string Title { get; set; }
         
-        // Sanatçı varsayılan olarak "Bilinmeyen" atanır.
-        public string Artist { get; set; } = "Bilinmeyen Sanatçı";
+        public string Artist { get; set; } = "Unknown Artist";
         
-        // JSON özelliğinin adı "Link" olarak eşleşir.
-        // Şarkının internet üzerindeki (GitHub) indirme/okuma bağlantısı.
         [JsonProperty("Link")]
         public string FileUrl { get; set; }
 
-        // Albüm kapağı resmi linki
         [JsonProperty("ImageUrl")]
         public string ImageUrl { get; set; }
 
         /// <summary>
-        /// ListBox gibi kontrollerde nesne gösterilirken bu metot çağrılır.
+        /// Called when object is displayed in controls like ListBox.
         /// </summary>
-        /// <returns>Ekranda görünecek metin (Sadece Şarkı Başlığı).</returns>
+        /// <returns>Text to appear on screen (Song Title only).</returns>
         public override string ToString()
         {
             return $"{Title}"; 

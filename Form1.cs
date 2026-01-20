@@ -7,177 +7,155 @@ using System.Threading.Tasks;
 using System.Net.Http;
 using Newtonsoft.Json;
 
-// Gereksiz 'using' ifadeleri temizlendi.
-// FireSharp yerine System.Net.Http (HttpClient) kullanılıyor.
-
 namespace KaanerMusic
 {
     /// <summary>
-    /// Ana Form sınıfı (Main Form). Uygulamanın kullanıcı arayüzünü ve temel mantığını yönetir.
+    /// Main Form class. Manages the user interface and core logic of the application.
     /// </summary>
     public partial class main_form : Form
     {
-        // Pencereleri kenarlıksız (borderless) yapınca sürükleyebilmek için gerekli Windows API sabitleri
+        // Windows API constants required for dragging borderless forms
         public const int WM_NCLBUTTONDOWN = 0xA1;
         public const int HT_CAPTION = 0x2;
 
         /// <summary>
-        /// Windows mesajlarını işlemek için API çağrısı.
+        /// API call to process Windows messages.
         /// </summary>
         [System.Runtime.InteropServices.DllImport("user32.dll")]
         public static extern int SendMessage(IntPtr hWnd, int Msg, int wParam, int lParam);
 
         /// <summary>
-        /// Fare yakalamayı serbest bırakmak için API çağrısı.
+        /// API call to release mouse capture.
         /// </summary>
         [System.Runtime.InteropServices.DllImport("user32.dll")]
         public static extern bool ReleaseCapture();
 
-        // İpucu kutucuğu (Tooltip) nesnesi
+        // Tooltip object
         ToolTip _toolTip = new ToolTip();
         
-        // Müzik çalar mantığını yöneten nesne
         private MusicPlayer _musicPlayer;
         
-        // Şarkı listesini tutan liste
         private List<Song> _songs;
         
-        // O an çalan şarkı nesnesi
         private Song _currentSong;
 
-        // GitHub üzerinden veri çekmek için HTTP istemcisi
+        // HTTP client to fetch data from GitHub
         private static readonly HttpClient _httpClient = new HttpClient();
 
         /// <summary>
-        /// Formun yapıcı metodu (Constructor).
+        /// Constructor method of the form.
         /// </summary>
         public main_form()
         {
             InitializeComponent();
-            _toolTip.InitialDelay = 1000; // Tooltip gecikmesi
+            _toolTip.InitialDelay = 1000;
 
-            #region Tooltips (İpuçları)
-            // Butonların üzerine gelince çıkacak yazıları ayarlar
-            _toolTip.SetToolTip(btn_play, "Oynat");
-            _toolTip.SetToolTip(btn_resume, "Duraklat");
-            _toolTip.SetToolTip(btn_previous_song, "Önceki Şarkı");
-            _toolTip.SetToolTip(btn_next_song, "Sonraki Şarkı");
-            _toolTip.SetToolTip(btn_admin_sync, "Şarkı Listesini Oluştur (Admin)");
+            #region Tooltips
+            _toolTip.SetToolTip(btn_play, "Play");
+            _toolTip.SetToolTip(btn_resume, "Pause");
+            _toolTip.SetToolTip(btn_previous_song, "Previous Song");
+            _toolTip.SetToolTip(btn_next_song, "Next Song");
+            _toolTip.SetToolTip(btn_sort_artist, "Sort by Artist");
+            _toolTip.SetToolTip(btn_sort_title, "Sort by Song Title");
             #endregion
 
-            // Mantık sınıflarını başlatır
             _musicPlayer = new MusicPlayer();
-            _musicPlayer.PlaybackStopped += OnMusicPlaybackStopped; // Otomatik geçiş için olay
+            _musicPlayer.PlaybackStopped += OnMusicPlaybackStopped;
 
-            // Olayları (Events) bağlar
             lst_songs.SelectedIndexChanged += Lst_songs_SelectedIndexChanged;
 
-            // Şarkıları GitHub'dan yükler
             LoadSongsFromGitHub();
         }
 
         /// <summary>
-        /// GitHub üzerinden 'songs.json' dosyasını çeker ve listeyi doldurur.
+        /// Fetches 'songs.json' from GitHub and populates the list.
         /// </summary>
         private async void LoadSongsFromGitHub()
         {
             try
             {
-                // GitHub üzerindeki raw songs.json dosyasının adresi
                 string songsJsonUrl = "https://raw.githubusercontent.com/Kaaner4mir/kaaner-music/main/Songs/songs.json";
                 
-                // Cache (önbellek) sorununu aşmak için timestamp ekliyoruz
                 string urlWithNoCache = $"{songsJsonUrl}?t={DateTime.Now.Ticks}";
 
-                // JSON verisini indir
                 string jsonContent = await _httpClient.GetStringAsync(urlWithNoCache);
                 
-                // JSON'ı listeye çevir
                 _songs = JsonConvert.DeserializeObject<List<Song>>(jsonContent);
 
-                // Şarkı listesi oluştuysa arayüze ekler
                 if (_songs != null && _songs.Count > 0)
                 {
-                    lst_songs.Items.Clear(); // Önce listeyi temizle
+                    lst_songs.Items.Clear();
                     foreach (var s in _songs)
                     {
-                        lst_songs.Items.Add(s); // ListBox'a ekle (Song.ToString() metodunu kullanır)
+                        lst_songs.Items.Add(s);
                     }
                 }
             }
             catch (HttpRequestException)
             {
-                // İnternet yok veya dosya henüz yüklenmemiş olabilir
-                MessageBox.Show("Şarkı listesi GitHub'dan çekilemedi.\nLütfen 'songs.json' dosyasının GitHub'a yüklendiğinden emin olun.");
+                // No internet or file not uploaded yet
+                MessageBox.Show("Could not fetch song list from GitHub.\nPlease ensure 'songs.json' is uploaded to GitHub.");
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Şarkılar yüklenirken hata oluştu: {ex.Message}");
+                MessageBox.Show($"Error loading songs: {ex.Message}");
             }
         } // End LoadSongsFromGitHub
 
         /// <summary>
-        /// Şarkı bitince otomatik olarak sonrakine geçer.
+        /// Automatically plays the next song when current finishes.
         /// </summary>
         private void OnMusicPlaybackStopped(object sender, EventArgs e)
         {
-            // Thread çakışmasını önlemek için UI thread üzerinde çalıştır
             this.Invoke(new Action(() => 
             {
-                // Sanki Sonraki Şarkı butonuna basılmış gibi davran
                 btn_next_song_Click(sender, e);
             }));
         }
 
         /// <summary>
-        /// Listeden bir şarkı seçildiğinde tetiklenir.
+        /// Triggered when a song is selected from the list.
         /// </summary>
         private void Lst_songs_SelectedIndexChanged(object sender, EventArgs e)
         {
-            // Seçilen öğeyi 'Song' tipine dönüştürür
             if (lst_songs.SelectedItem is Song selectedSong)
             {
                 _currentSong = selectedSong;
-                // Başlık etiketini günceller: Sanatçı - Şarkı Adı
                 lbl_title.Text = $"{selectedSong.Artist} - {selectedSong.Title}";
                 
-                // Seçilince otomatik oynat
                 PlaySong(_currentSong);
             }
         }
 
         /// <summary>
-        /// Belirtilen şarkıyı oynatır.
+        /// Plays the specified song.
         /// </summary>
-        /// <param name="song">Oynatılacak şarkı nesnesi.</param>
+        /// <param name="song">Song object to play.</param>
         private void PlaySong(Song song)
         {
-            // Şarkı geçerliyse ve URL'si boş değilse
             if (song != null && !string.IsNullOrEmpty(song.FileUrl))
             {
                 _musicPlayer.Play(song.FileUrl);
-                timer_progress.Start(); // Zamanlayıcıyı başlat
+                timer_progress.Start();
                 
-                // Albüm kapağını yükle (Asenkron)
                 if (!string.IsNullOrEmpty(song.ImageUrl))
                 {
                     pic_album_art.LoadAsync(song.ImageUrl);
                 }
                 else
                 {
-                   pic_album_art.Image = null; // Resim yoksa temizle
+                   pic_album_art.Image = null;
                 }
                 
-                // Butonların görünürlüğünü ayarlar
-                btn_play.Visible = false;   // Play butonunu gizle
-                btn_resume.Visible = true;  // Pause butonunu göster
+                btn_play.Visible = false;
+                btn_resume.Visible = true;
             }
         }
 
-        #region Buton Olayları (Button Events)
+        #region Button Events
 
         /// <summary>
-        /// Uygulamayı kapatır.
+        /// Closes the application.
         /// </summary>
         private void btn_close_Click(object sender, EventArgs e)
         {
@@ -185,7 +163,7 @@ namespace KaanerMusic
         }
 
         /// <summary>
-        /// Uygulamayı simge durumuna küçültür.
+        /// Minimizes the application to taskbar.
         /// </summary>
         private void btn_minimize_Click(object sender, EventArgs e)
         {
@@ -193,7 +171,7 @@ namespace KaanerMusic
         }
 
         /// <summary>
-        /// Uygulamayı tam ekran yapar veya eski haline getirir.
+        /// Toggles between maximize and restore.
         /// </summary>
         private void btn_restore_Click(object sender, EventArgs e)
         {
@@ -203,41 +181,23 @@ namespace KaanerMusic
                 WindowState = FormWindowState.Normal;
         }
 
-        /// <summary>
-        /// Admin senkronizasyon (JSON Oluşturma) butonuna tıklanınca çalışır.
-        /// </summary>
-        private async void btn_admin_sync_Click(object sender, EventArgs e)
-        {
-            // Admin araçlarını başlat
-            var adminTools = new AdminTools();
-            
-            // JSON dosyasını oluştur
-            int count = await adminTools.GeneratePlaylistJson();
-            
-            if (count > 0)
-            {
-                MessageBox.Show($"Başarılı! {count} şarkı bulundu ve 'songs.json' oluşturuldu.\n\nLÜTFEN DİKKAT:\nBu değişikliklerin çalışması için 'Songs' klasörünü (içindeki songs.json ile birlikte) GitHub'a PUSH etmelisiniz.");
-                // Burada hemen yüklemiyoruz çünkü GitHub'a yüklenmesi lazım.
-            }
-        }
+
 
         /// <summary>
-        /// Oynat (Play) butonuna tıklanınca çalışır.
+        /// Code for Play button.
         /// </summary>
         private void btn_play_Click(object sender, EventArgs e)
         {
-            // Eğer seçili bir şarkı varsa devam ettir veya oynat
             if (_currentSong != null)
             {
                 _musicPlayer.Play(_currentSong.FileUrl);
-                timer_progress.Start(); // Zamanlayıcıyı başlat
+                timer_progress.Start();
 
                 btn_play.Visible = false;
                 btn_resume.Visible = true;
             }
             else
             {
-                 // Hiçbir şey seçili değilse, listedeki ilk şarkıyı seçmeye çalış
                  if (lst_songs.Items.Count > 0)
                  {
                      lst_songs.SelectedIndex = 0;
@@ -246,27 +206,23 @@ namespace KaanerMusic
         }
 
         /// <summary>
-        /// Duraklat (Pause) butonuna tıklanınca çalışır.
+        /// Code for Pause button.
         /// </summary>
         private void btn_resume_Click(object sender, EventArgs e)
         {
-            // Müziği duraklatır
             _musicPlayer.Pause();
-            timer_progress.Stop(); // Zamanlayıcıyı durdur
+            timer_progress.Stop();
             
-            // Butonları değiştir
             btn_resume.Visible = false;
             btn_play.Visible = true;
         }
 
-        #region İlerleme Çubuğu İşlemleri (Progress Bar Logic)
+        #region Progress Bar Logic
 
-        // Kullanıcı çubuğu kaydırıyor mu?
         private bool _isDraggingProgress = false;
 
         private void timer_progress_Tick(object sender, EventArgs e)
         {
-            // Eğer kullanıcı o an kaydırma yapmıyorsa, çubuğu şarkı süresine göre ilerlet
             if (!_isDraggingProgress && _musicPlayer != null)
             {
                 double current = _musicPlayer.GetCurrentPosition();
@@ -274,8 +230,6 @@ namespace KaanerMusic
 
                 if (total > 0)
                 {
-                    // TrackBar maksimum değeri varsayılan 10 ise veya değiştirildiyse
-                    // Hassasiyet için TrackBar Max değerini şarkı saniyesine eşitleyebiliriz
                     track_progress.Maximum = (int)total;
                     
                     if (current <= total)
@@ -286,15 +240,14 @@ namespace KaanerMusic
 
         private void track_progress_Scroll(object sender, EventArgs e)
         {
-            // Kullanıcı kaydırırken anlık olarak süre etiketi güncellenebilir (varsa)
+            // Could update time label while scrolling if exists
         }
 
         private void track_progress_MouseDown(object sender, MouseEventArgs e)
         {
-            // Kullanıcı tuttuğunda otomatik ilerlemeyi durdur ki çakışma olmasın
             _isDraggingProgress = true;
             
-            // Tıklanan noktaya ilerleme çubuğunu taşı (Click to Seek)
+            // Click to Seek
             double dblValue = ((double)e.X / (double)track_progress.Width) * (track_progress.Maximum - track_progress.Minimum);
             int newValue = (int)dblValue;
 
@@ -306,7 +259,6 @@ namespace KaanerMusic
 
         private void track_progress_MouseUp(object sender, MouseEventArgs e)
         {
-            // Kullanıcı bıraktığında şarkıyı o konuma sar
             _isDraggingProgress = false;
             
             if (_musicPlayer != null)
@@ -315,10 +267,37 @@ namespace KaanerMusic
             }
         }
 
+        private void btn_sort_artist_Click(object sender, EventArgs e)
+        {
+            if (_songs != null && _songs.Count > 0)
+            {
+                _songs = _songs.OrderBy(s => s.Artist).ToList();
+                RefreshSongList();
+            }
+        }
+
+        private void btn_sort_title_Click(object sender, EventArgs e)
+        {
+            if (_songs != null && _songs.Count > 0)
+            {
+                _songs = _songs.OrderBy(s => s.Title).ToList();
+                RefreshSongList();
+            }
+        }
+
+        private void RefreshSongList()
+        {
+            lst_songs.Items.Clear();
+            foreach (var s in _songs)
+            {
+                lst_songs.Items.Add(s);
+            }
+        }
+
         #endregion
 
         /// <summary>
-        /// Sonraki şarkı butonuna tıklanınca çalışır.
+        /// Code for Next Song button.
         /// </summary>
         private void btn_next_song_Click(object sender, EventArgs e)
         {
@@ -331,13 +310,13 @@ namespace KaanerMusic
                 }
                 else
                 {
-                    lst_songs.SelectedIndex = 0; // Başa dön
+                    lst_songs.SelectedIndex = 0; // Loop back to start
                 }
             }
         }
 
         /// <summary>
-        /// Önceki şarkı butonuna tıklanınca çalışır.
+        /// Code for Previous Song button.
         /// </summary>
         private void btn_previous_song_Click(object sender, EventArgs e)
         {
@@ -350,17 +329,17 @@ namespace KaanerMusic
                 }
                 else
                 {
-                    lst_songs.SelectedIndex = lst_songs.Items.Count - 1; // Sona git
+                    lst_songs.SelectedIndex = lst_songs.Items.Count - 1; // Go to end
                 }
             }
         }
 
         #endregion
 
-        #region Panel Olayları
+        #region Panel Events
 
         /// <summary>
-        /// Başlık çubuğuna basılı tutarak pencereyi sürüklemeyi sağlar.
+        /// Allows dragging the window by holding the title bar.
         /// </summary>
         private void pnl_titlebar_MouseDown(object sender, MouseEventArgs e)
         {
@@ -374,7 +353,7 @@ namespace KaanerMusic
         #endregion
 
         /// <summary>
-        /// Ses çubuğu kaydırılınca ses seviyesini ayarlar.
+        /// Adjusts volume when volume bar is scrolled.
         /// </summary>
         private void track_volume_Scroll(object sender, EventArgs e)
         {

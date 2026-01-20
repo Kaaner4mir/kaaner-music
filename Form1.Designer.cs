@@ -34,10 +34,11 @@
             this.btn_restore = new System.Windows.Forms.Button();
             this.btn_minimize = new System.Windows.Forms.Button();
             this.btn_close = new System.Windows.Forms.Button();
-            this.btn_admin_sync = new System.Windows.Forms.Button();
             this.lst_songs = new System.Windows.Forms.ListBox();
             this.timer_progress = new System.Windows.Forms.Timer(this.components);
             this.pnl_controls = new System.Windows.Forms.Panel();
+            this.btn_sort_title = new System.Windows.Forms.Button();
+            this.btn_sort_artist = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.track_progress = new System.Windows.Forms.TrackBar();
             this.btn_next_song = new System.Windows.Forms.Button();
@@ -61,7 +62,6 @@
             this.pnl_titlebar.Controls.Add(this.btn_restore);
             this.pnl_titlebar.Controls.Add(this.btn_minimize);
             this.pnl_titlebar.Controls.Add(this.btn_close);
-            this.pnl_titlebar.Controls.Add(this.btn_admin_sync);
             this.pnl_titlebar.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnl_titlebar.Location = new System.Drawing.Point(0, 0);
             this.pnl_titlebar.Name = "pnl_titlebar";
@@ -115,21 +115,6 @@
             this.btn_close.UseVisualStyleBackColor = true;
             this.btn_close.Click += new System.EventHandler(this.btn_close_Click);
             // 
-            // btn_admin_sync
-            // 
-            this.btn_admin_sync.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btn_admin_sync.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btn_admin_sync.FlatAppearance.BorderSize = 0;
-            this.btn_admin_sync.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_admin_sync.ForeColor = System.Drawing.Color.White;
-            this.btn_admin_sync.Location = new System.Drawing.Point(1000, 0);
-            this.btn_admin_sync.Name = "btn_admin_sync";
-            this.btn_admin_sync.Size = new System.Drawing.Size(100, 30);
-            this.btn_admin_sync.TabIndex = 4;
-            this.btn_admin_sync.Text = "Sync Songs";
-            this.btn_admin_sync.UseVisualStyleBackColor = true;
-            this.btn_admin_sync.Click += new System.EventHandler(this.btn_admin_sync_Click);
-            // 
             // lst_songs
             // 
             this.lst_songs.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
@@ -152,6 +137,8 @@
             // pnl_controls
             // 
             this.pnl_controls.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
+            this.pnl_controls.Controls.Add(this.btn_sort_title);
+            this.pnl_controls.Controls.Add(this.btn_sort_artist);
             this.pnl_controls.Controls.Add(this.pictureBox1);
             this.pnl_controls.Controls.Add(this.track_progress);
             this.pnl_controls.Controls.Add(this.btn_next_song);
@@ -166,11 +153,46 @@
             this.pnl_controls.Size = new System.Drawing.Size(838, 264);
             this.pnl_controls.TabIndex = 2;
             // 
+            // btn_sort_title
+            // 
+            this.btn_sort_title.BackColor = System.Drawing.Color.Transparent;
+            this.btn_sort_title.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btn_sort_title.BackgroundImage")));
+            this.btn_sort_title.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btn_sort_title.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btn_sort_title.FlatAppearance.BorderSize = 0;
+            this.btn_sort_title.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.btn_sort_title.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.btn_sort_title.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_sort_title.Location = new System.Drawing.Point(44, 136);
+            this.btn_sort_title.Name = "btn_sort_title";
+            this.btn_sort_title.Size = new System.Drawing.Size(40, 40);
+            this.btn_sort_title.TabIndex = 12;
+            this.btn_sort_title.UseVisualStyleBackColor = false;
+            this.btn_sort_title.Click += new System.EventHandler(this.btn_sort_title_Click);
+            // 
+            // btn_sort_artist
+            // 
+            this.btn_sort_artist.BackColor = System.Drawing.Color.Transparent;
+            this.btn_sort_artist.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btn_sort_artist.BackgroundImage")));
+            this.btn_sort_artist.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btn_sort_artist.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btn_sort_artist.FlatAppearance.BorderSize = 0;
+            this.btn_sort_artist.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.btn_sort_artist.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.btn_sort_artist.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_sort_artist.Location = new System.Drawing.Point(99, 136);
+            this.btn_sort_artist.Name = "btn_sort_artist";
+            this.btn_sort_artist.Size = new System.Drawing.Size(40, 40);
+            this.btn_sort_artist.TabIndex = 11;
+            this.btn_sort_artist.UseVisualStyleBackColor = false;
+            this.btn_sort_artist.Click += new System.EventHandler(this.btn_sort_artist_Click);
+            // 
             // pictureBox1
             // 
+            this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.pictureBox1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox1.BackgroundImage")));
             this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox1.Location = new System.Drawing.Point(646, 134);
+            this.pictureBox1.Location = new System.Drawing.Point(663, 147);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(35, 35);
             this.pictureBox1.TabIndex = 10;
@@ -180,9 +202,9 @@
             // 
             this.track_progress.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.track_progress.Location = new System.Drawing.Point(21, 207);
+            this.track_progress.Location = new System.Drawing.Point(37, 207);
             this.track_progress.Name = "track_progress";
-            this.track_progress.Size = new System.Drawing.Size(783, 45);
+            this.track_progress.Size = new System.Drawing.Size(771, 45);
             this.track_progress.TabIndex = 9;
             this.track_progress.TickStyle = System.Windows.Forms.TickStyle.None;
             this.track_progress.Scroll += new System.EventHandler(this.track_progress_Scroll);
@@ -201,7 +223,7 @@
             this.btn_next_song.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_next_song.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_next_song.ForeColor = System.Drawing.Color.White;
-            this.btn_next_song.Location = new System.Drawing.Point(485, 129);
+            this.btn_next_song.Location = new System.Drawing.Point(489, 134);
             this.btn_next_song.Name = "btn_next_song";
             this.btn_next_song.Size = new System.Drawing.Size(40, 40);
             this.btn_next_song.TabIndex = 7;
@@ -220,7 +242,7 @@
             this.btn_previous_song.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_previous_song.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_previous_song.ForeColor = System.Drawing.Color.White;
-            this.btn_previous_song.Location = new System.Drawing.Point(314, 129);
+            this.btn_previous_song.Location = new System.Drawing.Point(318, 134);
             this.btn_previous_song.Name = "btn_previous_song";
             this.btn_previous_song.Size = new System.Drawing.Size(40, 40);
             this.btn_previous_song.TabIndex = 6;
@@ -239,7 +261,7 @@
             this.btn_resume.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_resume.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_resume.ForeColor = System.Drawing.Color.White;
-            this.btn_resume.Location = new System.Drawing.Point(390, 119);
+            this.btn_resume.Location = new System.Drawing.Point(394, 124);
             this.btn_resume.Name = "btn_resume";
             this.btn_resume.Size = new System.Drawing.Size(60, 60);
             this.btn_resume.TabIndex = 5;
@@ -252,7 +274,7 @@
             this.lbl_title.AutoSize = true;
             this.lbl_title.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbl_title.ForeColor = System.Drawing.Color.White;
-            this.lbl_title.Location = new System.Drawing.Point(16, 29);
+            this.lbl_title.Location = new System.Drawing.Point(32, 29);
             this.lbl_title.Name = "lbl_title";
             this.lbl_title.Size = new System.Drawing.Size(121, 30);
             this.lbl_title.TabIndex = 4;
@@ -261,7 +283,8 @@
             // track_volume
             // 
             this.track_volume.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.track_volume.Location = new System.Drawing.Point(687, 143);
+            this.track_volume.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.track_volume.Location = new System.Drawing.Point(704, 156);
             this.track_volume.Maximum = 100;
             this.track_volume.Name = "track_volume";
             this.track_volume.Size = new System.Drawing.Size(104, 45);
@@ -282,7 +305,7 @@
             this.btn_play.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_play.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_play.ForeColor = System.Drawing.Color.White;
-            this.btn_play.Location = new System.Drawing.Point(390, 119);
+            this.btn_play.Location = new System.Drawing.Point(394, 124);
             this.btn_play.Name = "btn_play";
             this.btn_play.Size = new System.Drawing.Size(60, 60);
             this.btn_play.TabIndex = 0;
@@ -316,6 +339,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "main_form";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "Kaaner Music";
             this.pnl_titlebar.ResumeLayout(false);
             this.pnl_controls.ResumeLayout(false);
             this.pnl_controls.PerformLayout();
@@ -333,7 +357,7 @@
         private System.Windows.Forms.Button btn_close;
         private System.Windows.Forms.Button btn_minimize;
         private System.Windows.Forms.Button btn_restore;
-        private System.Windows.Forms.Button btn_admin_sync;
+
         private System.Windows.Forms.ListBox lst_songs;
         private System.Windows.Forms.Panel pnl_controls;
         private System.Windows.Forms.Button btn_play;
@@ -346,5 +370,7 @@
         private System.Windows.Forms.TrackBar track_progress;
         private System.Windows.Forms.PictureBox pic_album_art; // Albüm Resmi
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Button btn_sort_title;
+        private System.Windows.Forms.Button btn_sort_artist;
     }
 }

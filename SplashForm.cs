@@ -12,14 +12,13 @@ namespace KaanerMusic
         public SplashForm()
         {
             InitializeComponent();
-            // Layered Window özellikleri
+            InitializeComponent();
             this.FormBorderStyle = FormBorderStyle.None;
             this.ShowInTaskbar = false;
         }
 
         private void SplashForm_Load(object sender, EventArgs e)
         {
-            // Resim Yükleme Mantığı
             string logoPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Elements", "logo.png");
             if (!File.Exists(logoPath))
             {
@@ -30,12 +29,11 @@ namespace KaanerMusic
             {
                 using (Bitmap originalBitmap = new Bitmap(logoPath))
                 {
-                    // Oran koruyarak yeniden boyutlandırma (Max 500px genişlik veya 500px yükseklik)
                     int maxWidth = 500;
                     int maxHeight = 500;
                     double ratioX = (double)maxWidth / originalBitmap.Width;
                     double ratioY = (double)maxHeight / originalBitmap.Height;
-                    double ratio = Math.Min(ratioX, ratioY); // En küçük oranı al ki sığsın
+                    double ratio = Math.Min(ratioX, ratioY);
 
                     int newWidth = (int)(originalBitmap.Width * ratio);
                     int newHeight = (int)(originalBitmap.Height * ratio);
@@ -43,10 +41,8 @@ namespace KaanerMusic
                     Size targetSize = new Size(newWidth, newHeight);
                     using (Bitmap resizedBitmap = new Bitmap(originalBitmap, targetSize))
                     {
-                        // Form boyutunu eşitle
                         this.Size = targetSize;
                         
-                        // Resmi ekrana Alpha Channel ile bas
                         SelectBitmap(resizedBitmap);
                     }
                 }
@@ -59,7 +55,7 @@ namespace KaanerMusic
             this.Close();
         }
 
-        // --- Layered Window (Pencere Katmanlama) ve Alpha Blending (Şeffaflık) kodları ---
+
         
         protected override CreateParams CreateParams
         {
@@ -86,7 +82,6 @@ namespace KaanerMusic
                 Size size = bitmap.Size;
                 Point pointSource = new Point(0, 0);
                 
-                // Manuel Ortalama Hesaplaması
                 Rectangle screenBounds = Screen.PrimaryScreen.Bounds;
                 Point topPos = new Point(
                     (screenBounds.Width - size.Width) / 2,
@@ -113,7 +108,7 @@ namespace KaanerMusic
             }
         }
 
-        // --- Windows API Tanımları ---
+
 
         #region WinAPI
         public const byte AC_SRC_OVER = 0x00;
