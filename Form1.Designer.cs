@@ -35,10 +35,11 @@
             this.btn_close = new System.Windows.Forms.Button();
             this.lst_songs = new System.Windows.Forms.ListBox();
             this.pnl_controls = new System.Windows.Forms.Panel();
+            this.btn_next_song = new System.Windows.Forms.Button();
+            this.btn_previous_song = new System.Windows.Forms.Button();
+            this.btn_resume = new System.Windows.Forms.Button();
             this.lbl_title = new System.Windows.Forms.Label();
             this.track_volume = new System.Windows.Forms.TrackBar();
-            this.btn_next = new System.Windows.Forms.Button();
-            this.btn_prev = new System.Windows.Forms.Button();
             this.btn_play = new System.Windows.Forms.Button();
             this.pnl_titlebar.SuspendLayout();
             this.pnl_controls.SuspendLayout();
@@ -121,16 +122,73 @@
             // pnl_controls
             // 
             this.pnl_controls.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
+            this.pnl_controls.Controls.Add(this.btn_next_song);
+            this.pnl_controls.Controls.Add(this.btn_previous_song);
+            this.pnl_controls.Controls.Add(this.btn_resume);
             this.pnl_controls.Controls.Add(this.lbl_title);
             this.pnl_controls.Controls.Add(this.track_volume);
-            this.pnl_controls.Controls.Add(this.btn_next);
-            this.pnl_controls.Controls.Add(this.btn_prev);
             this.pnl_controls.Controls.Add(this.btn_play);
             this.pnl_controls.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.pnl_controls.Location = new System.Drawing.Point(300, 680);
             this.pnl_controls.Name = "pnl_controls";
             this.pnl_controls.Size = new System.Drawing.Size(900, 120);
             this.pnl_controls.TabIndex = 2;
+            // 
+            // btn_next_song
+            // 
+            this.btn_next_song.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.btn_next_song.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btn_next_song.BackgroundImage")));
+            this.btn_next_song.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btn_next_song.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btn_next_song.FlatAppearance.BorderSize = 0;
+            this.btn_next_song.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.btn_next_song.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.btn_next_song.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_next_song.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_next_song.ForeColor = System.Drawing.Color.White;
+            this.btn_next_song.Location = new System.Drawing.Point(512, 40);
+            this.btn_next_song.Name = "btn_next_song";
+            this.btn_next_song.Size = new System.Drawing.Size(40, 40);
+            this.btn_next_song.TabIndex = 7;
+            this.btn_next_song.UseVisualStyleBackColor = true;
+            // 
+            // btn_previous_song
+            // 
+            this.btn_previous_song.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.btn_previous_song.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btn_previous_song.BackgroundImage")));
+            this.btn_previous_song.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btn_previous_song.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btn_previous_song.FlatAppearance.BorderSize = 0;
+            this.btn_previous_song.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.btn_previous_song.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.btn_previous_song.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_previous_song.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_previous_song.ForeColor = System.Drawing.Color.White;
+            this.btn_previous_song.Location = new System.Drawing.Point(341, 40);
+            this.btn_previous_song.Name = "btn_previous_song";
+            this.btn_previous_song.Size = new System.Drawing.Size(40, 40);
+            this.btn_previous_song.TabIndex = 6;
+            this.btn_previous_song.UseVisualStyleBackColor = true;
+            // 
+            // btn_resume
+            // 
+            this.btn_resume.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.btn_resume.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btn_resume.BackgroundImage")));
+            this.btn_resume.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btn_resume.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btn_resume.FlatAppearance.BorderSize = 0;
+            this.btn_resume.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.btn_resume.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.btn_resume.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_resume.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_resume.ForeColor = System.Drawing.Color.White;
+            this.btn_resume.Location = new System.Drawing.Point(417, 30);
+            this.btn_resume.Name = "btn_resume";
+            this.btn_resume.Size = new System.Drawing.Size(60, 60);
+            this.btn_resume.TabIndex = 5;
+            this.btn_resume.UseVisualStyleBackColor = true;
+            this.btn_resume.Visible = false;
+            this.btn_resume.Click += new System.EventHandler(this.btn_resume_Click);
             // 
             // lbl_title
             // 
@@ -154,42 +212,24 @@
             this.track_volume.TickStyle = System.Windows.Forms.TickStyle.None;
             this.track_volume.Value = 50;
             // 
-            // btn_next
-            // 
-            this.btn_next.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.btn_next.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_next.ForeColor = System.Drawing.Color.White;
-            this.btn_next.Location = new System.Drawing.Point(500, 40);
-            this.btn_next.Name = "btn_next";
-            this.btn_next.Size = new System.Drawing.Size(50, 40);
-            this.btn_next.TabIndex = 2;
-            this.btn_next.Text = ">>";
-            this.btn_next.UseVisualStyleBackColor = true;
-            // 
-            // btn_prev
-            // 
-            this.btn_prev.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.btn_prev.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_prev.ForeColor = System.Drawing.Color.White;
-            this.btn_prev.Location = new System.Drawing.Point(340, 40);
-            this.btn_prev.Name = "btn_prev";
-            this.btn_prev.Size = new System.Drawing.Size(50, 40);
-            this.btn_prev.TabIndex = 1;
-            this.btn_prev.Text = "<<";
-            this.btn_prev.UseVisualStyleBackColor = true;
-            // 
             // btn_play
             // 
             this.btn_play.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.btn_play.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btn_play.BackgroundImage")));
+            this.btn_play.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btn_play.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btn_play.FlatAppearance.BorderSize = 0;
+            this.btn_play.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.btn_play.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.btn_play.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_play.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_play.ForeColor = System.Drawing.Color.White;
-            this.btn_play.Location = new System.Drawing.Point(410, 30);
+            this.btn_play.Location = new System.Drawing.Point(417, 30);
             this.btn_play.Name = "btn_play";
-            this.btn_play.Size = new System.Drawing.Size(70, 60);
+            this.btn_play.Size = new System.Drawing.Size(60, 60);
             this.btn_play.TabIndex = 0;
-            this.btn_play.Text = "Play";
             this.btn_play.UseVisualStyleBackColor = true;
+            this.btn_play.Click += new System.EventHandler(this.btn_play_Click);
             // 
             // main_form
             // 
@@ -204,7 +244,6 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "main_form";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Load += new System.EventHandler(this.main_form_Load);
             this.pnl_titlebar.ResumeLayout(false);
             this.pnl_controls.ResumeLayout(false);
             this.pnl_controls.PerformLayout();
@@ -222,9 +261,10 @@
         private System.Windows.Forms.ListBox lst_songs;
         private System.Windows.Forms.Panel pnl_controls;
         private System.Windows.Forms.Button btn_play;
-        private System.Windows.Forms.Button btn_next;
-        private System.Windows.Forms.Button btn_prev;
         private System.Windows.Forms.TrackBar track_volume;
         private System.Windows.Forms.Label lbl_title;
+        private System.Windows.Forms.Button btn_resume;
+        private System.Windows.Forms.Button btn_next_song;
+        private System.Windows.Forms.Button btn_previous_song;
     }
 }
